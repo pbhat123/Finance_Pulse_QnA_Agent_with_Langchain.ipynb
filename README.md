@@ -2,23 +2,25 @@
 
 > A history-aware financial education assistant that turns Zerodha Varsity content into concise, source-grounded answers using LangChain RAG.
 
-## 1. Project Title & Value Proposition
+## 1️⃣ Project Title & Value Proposition
 
 **Finance Pulse Q&A Agent with LangChain** is a retrieval-augmented question-answering agent for learners and retail investors. It retrieves relevant material from Zerodha Varsity, follows the context of a conversation, and produces concise answers grounded only in the indexed content.
 
-## 2. Background & Problem Context
+<img width="1251" height="677" alt="image" src="https://github.com/user-attachments/assets/f8e88870-e340-4d33-95f2-93d68778804a" />
+
+## 2️⃣ Background & Problem Context
 
 Financial education libraries contain valuable information, but finding a precise answer often requires searching across many chapters and translating unfamiliar terminology. This is especially time-consuming for beginners who may not know which topic or chapter contains the answer.
 
 Keyword search and a basic chatbot are limited: search returns documents rather than a direct response, while an ungrounded chatbot can produce plausible but unsupported financial claims. This project combines semantic retrieval with strict answer constraints so users can ask natural-language questions and receive focused, context-aware explanations.
 
-## 3. Target User & Job To Be Done (JTBD)
+## 3️⃣ Target User & Job To Be Done (JTBD)
 
 - **Primary user:** Students, beginner investors, and self-directed learners studying financial markets.
 - **Secondary users:** Educators or mentors who need a quick way to locate concepts in the indexed learning material.
 - **JTBD:** Find a concise, contextually relevant answer to a finance question without manually searching through numerous chapters, while keeping the response grounded in the available educational content.
 
-## 4. Why an Agentic Approach
+## 4️⃣ Why an Agentic Approach
 
 A fixed script cannot reliably map the many ways users phrase a question to the most relevant source passages. A simple chatbot also lacks a dependable knowledge boundary. This agent dynamically:
 
@@ -30,7 +32,7 @@ A fixed script cannot reliably map the many ways users phrase a question to the 
 
 The current version uses a constrained agentic RAG workflow rather than an open-ended autonomous agent: it reasons over conversational context and retrieval, but it does not execute financial transactions or modify external systems.
 
-## 5. Agent Role, Scope & Autonomy Level
+## 5️⃣ Agent Role, Scope & Autonomy Level
 
 The agent owns the question-answering flow from query interpretation through retrieval and response generation.
 
@@ -49,7 +51,7 @@ The agent owns the question-answering flow from query interpretation through ret
 
 The user retains control through the **Delete Previous** and **Clear** interface actions. No human approval step is currently required because the agent performs read-only question answering.
 
-## 6. Agent Architecture & Components
+## 6️⃣ Agent Architecture & Components
 
 ```mermaid
 flowchart LR
@@ -91,7 +93,7 @@ LangChain's history-aware retriever uses the conversation and latest message to 
 
 `create_history_aware_retriever` and `create_retrieval_chain` coordinate query reformulation, retrieval, context injection, and response generation. The present implementation does not include explicit retries, persistent conversation memory, or automated retrieval-quality validation.
 
-## 7. End-to-End Agent Workflow
+## 7️⃣ End-to-End Agent Workflow
 
 1. Fetch the Zerodha Varsity sitemap and extract chapter URLs.
 2. Load the first 114 pages with `WebBaseLoader`.
@@ -103,7 +105,7 @@ LangChain's history-aware retriever uses the conversation and latest message to 
 8. Ask the language model to answer using only the retrieved context.
 9. Return a maximum-three-sentence response or the configured fallback message.
 
-## 8. Tools, Models & Stack
+## 8️⃣ Tools, Models & Stack
 
 | Component | Technology | Rationale |
 |---|---|---|
@@ -116,7 +118,7 @@ LangChain's history-aware retriever uses the conversation and latest message to 
 | Interface | Gradio | Enables a lightweight conversational UI with examples and history controls. |
 | Environment | Google Colab + `python-dotenv` | Supports notebook-based execution and secret loading during development. |
 
-## 9. Evaluation Strategy & Metrics
+## 9️⃣ Evaluation Strategy & Metrics
 
 The repository currently does not include an automated evaluation suite. A production-oriented evaluation should measure:
 
@@ -130,7 +132,7 @@ The repository currently does not include an automated evaluation suite. A produ
 
 A practical test set should include direct questions, paraphrases, multi-turn follow-ups, ambiguous prompts, out-of-scope requests, and adversarial attempts to bypass the grounding instruction.
 
-## 10. Guardrails, Trust & Safety
+## 🔟 Guardrails, Trust & Safety
 
 - The system prompt requires answers to use only retrieved context.
 - Responses are limited to three sentences to reduce unsupported elaboration.
@@ -141,7 +143,7 @@ A practical test set should include direct questions, paraphrases, multi-turn fo
 
 This project is an educational prototype and should not be treated as personalized financial advice. For stronger auditability, a future version should expose citations, retrieval scores, request traces, and model usage logs.
 
-## 11. Failure Modes & Tradeoffs
+## 1️⃣1️⃣ Failure Modes & Tradeoffs
 
 - **Source freshness:** Answers reflect the content indexed when the app starts; changed web pages are not synchronized during a session.
 - **Coverage limits:** Only the first 114 sitemap URLs are loaded, so relevant material may be omitted.
@@ -154,7 +156,7 @@ This project is an educational prototype and should not be treated as personaliz
 
 Larger chunks may preserve context but reduce retrieval precision; smaller chunks improve targeting but may separate important explanations. Increasing the number of retrieved passages can improve recall while adding latency, cost, and irrelevant context.
 
-## 12. Results, Learnings & Insights
+## 1️⃣2️⃣ Results, Learnings & Insights
 
 The current prototype demonstrates a complete conversational RAG path: web ingestion, chunking, embedding, semantic retrieval, history-aware question reformulation, constrained generation, and a usable chat interface.
 
@@ -162,7 +164,7 @@ The most important design learning is that conversational retrieval needs two fo
 
 Quantitative accuracy, latency, and cost results have not yet been published. Add benchmark results here after running the evaluation plan above.
 
-## 13. Future Improvements & Iteration Plan
+## 1️⃣3️⃣ Future Improvements & Iteration Plan
 
 - Persist the Chroma collection so the corpus is not re-embedded on every launch.
 - Store source metadata and display citations with each answer.
@@ -174,7 +176,7 @@ Quantitative accuracy, latency, and cost results have not yet been published. Ad
 - Add input moderation and explicit financial-advice disclaimers in the UI.
 - Package the application for reproducible local or cloud deployment.
 
-## 14. Demo & Artifacts
+## 1️⃣4️⃣ Demo & Artifacts
 
 The application launches a Gradio interface and can optionally create a temporary public share link using `share=True`.
 
@@ -184,9 +186,9 @@ The application launches a Gradio interface and can optionally create a temporar
 - Where can I buy stocks?
 - How does that differ from an ETF?
 
-Add a stable hosted demo, walkthrough video, sample traces, and screenshots when available.
+See demo screenshots above.
 
-## Role-Based Signal
+## 1️⃣5️⃣ Role-Based Signal
 
 - **For Product Managers:** Demonstrates problem framing, user scope, knowledge boundaries, success metrics, safety constraints, and explicit product tradeoffs.
 - **For Engineering Managers:** Demonstrates modular RAG architecture, orchestration, component boundaries, scaling risks, and an iteration plan.
